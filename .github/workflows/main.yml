@@ -27,7 +27,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.10
+    runs-on: ubuntu-18.04
 
     steps:
        - name: Checkout
@@ -65,8 +65,8 @@ jobs:
        - name: Uploading recovery image
          run: |
               cd work/out/target/product/$DEVICE
-              sudo zip -r9 TWRP-X00T.zip recovery.img
+              sudo zip -r9 PBRP-X00T.zip recovery.img
               ls > ls.txt
                 curl -sL https://git.io/file-transfer | sh
-              ./transfer wet TWRP-X00T.zip
+              ./transfer wet PBRP-X00T.zip
               ./transfer wet recovery.img
