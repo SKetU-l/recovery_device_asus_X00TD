@@ -16,9 +16,9 @@ on:
     types: [started]
 
 env:
-  MANIFEST: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+  MANIFEST: https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-12.1
   DEVICE: X00T
-  DT_LINK: https://github.com/hraj9258/recovery_device_asus_X00T_twrp
+  DT_LINK: https://github.com/sketuinhell/recovery_device_asus_X00T_twrp -b pbrp
   DT_PATH: device/asus/X00T
   CHAT_ID: ${{ secrets.TEST_CHAT_ID }}
   BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
@@ -38,8 +38,8 @@ jobs:
             sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
             docker rmi `docker images -q`
             sudo apt-get remove account-plugin-facebook account-plugin-flickr account-plugin-jabber account-plugin-salut account-plugin-twitter account-plugin-windows-live account-plugin-yahoo aisleriot brltty duplicity empathy empathy-common example-content gnome-accessibility-themes gnome-contacts gnome-mahjongg gnome-mines gnome-orca gnome-screensaver gnome-sudoku gnome-video-effects gnomine landscape-common libreoffice-avmedia-backend-gstreamer libreoffice-base-core libreoffice-calc libreoffice-common libreoffice-core libreoffice-draw libreoffice-gnome libreoffice-gtk libreoffice-impress libreoffice-math libreoffice-ogltrans libreoffice-pdfimport libreoffice-style-galaxy libreoffice-style-human libreoffice-writer libsane libsane-common mcp-account-manager-uoa python3-uno rhythmbox rhythmbox-plugins rhythmbox-plugin-zeitgeist sane-utils shotwell shotwell-common telepathy-gabble telepathy-haze telepathy-idle telepathy-indicator telepathy-logger telepathy-mission-control-5 telepathy-salut totem totem-common totem-plugins printer-driver-brlaser printer-driver-foo2zjs printer-driver-foo2zjs-common printer-driver-m2300w printer-driver-ptouch printer-driver-splix
-            git config --global user.name "Himanshu Raj"
-            git config --global user.email "himanshurajkush@gmail.com"         
+            git config --global user.name "sketuinhell"
+            git config --global user.email "sketumanager@gmail.com"         
             sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php* 
             sudo -E apt-get clean 
             sudo -E apt-get -qq update
@@ -47,7 +47,7 @@ jobs:
             sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
             sudo chmod a+rx /usr/local/bin/repo
             
-       - name: Sync TWRP 9 source and device tree
+       - name: Sync pbrp source and device tree
          run: |
              mkdir work
              cd work
@@ -55,7 +55,7 @@ jobs:
              repo sync -j4
              git clone $DT_LINK --depth=1 --single-branch $DT_PATH
              
-       - name: Building TWRP
+       - name: Building pbrp
          run: |
               cd work
               export ALLOW_MISSING_DEPENDENCIES=true 
@@ -67,8 +67,6 @@ jobs:
               cd work/out/target/product/$DEVICE
               sudo zip -r9 TWRP-X00T.zip recovery.img
               ls > ls.txt
-              curl -F chat_id=$CHAT_ID -F document=@ls.txt -F parse_mode=markdown https://api.telegram.org/bot$BOT_TOKEN/sendDocument -F caption="Check it out @hraj9258"
-              curl -F chat_id=$CHAT_ID -F document=@TWRP-X00T.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument -F caption="Please test it @hraj9258"
-              curl -sL https://git.io/file-transfer | sh
+                curl -sL https://git.io/file-transfer | sh
               ./transfer wet TWRP-X00T.zip
               ./transfer wet recovery.img
