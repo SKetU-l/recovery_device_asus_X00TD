@@ -5,13 +5,13 @@ $(call inherit-product, vendor/pb/config/common.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
 # Inherit from ASUS_X00TD device
-$(call inherit-product, device/asus/X00T/device.mk)
+$(call inherit-product, device/asus/X00TD/device.mk)
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := X00T
-PRODUCT_NAME := omni_X00T
+PRODUCT_DEVICE := X00TD
+PRODUCT_NAME := omni_X00TD
 PRODUCT_BRAND := asus
-PRODUCT_MODEL := ASUS_X00T
+PRODUCT_MODEL := ASUS_X00TD
 PRODUCT_MANUFACTURER := asus
 
 PRODUCT_GMS_CLIENTID_BASE := android-asus
