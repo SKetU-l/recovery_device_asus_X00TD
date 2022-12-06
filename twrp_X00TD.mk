@@ -17,15 +17,15 @@
 #
 
 # Inherit from ASUS_X00TD device
-$(call inherit-product, device/asus/X00T/device.mk)
+$(call inherit-product, device/asus/X00TD/device.mk)
 
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := X00T
-PRODUCT_NAME := twrp_X00T
+PRODUCT_DEVICE := X00TD
+PRODUCT_NAME := twrp_X00TD
 PRODUCT_BRAND := asus
-PRODUCT_MODEL := ASUS_X00T
+PRODUCT_MODEL := ASUS_X00TD
 PRODUCT_MANUFACTURER := asus
 PRODUCT_RELEASE_NAME := ASUS_Zenfone_Max_Pro_M1

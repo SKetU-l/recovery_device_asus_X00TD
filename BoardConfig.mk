@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/asus/X00T
+DEVICE_PATH := device/asus/X00TD
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
